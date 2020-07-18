@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        #div1{
+            width: 300px;
+            height: 200px;
+            border: 1px solid #eeeeee;
+            margin: 20px auto;
+            line-height: 200px;
+            text-align: center;
+            font-size: 20px;
+        }
+    </style>
+    <script>
+        /* 
+                写一个定时器,每个一秒修改
+                一次div内文本颜色和文字大小.
+                最开始这个文字是默认大小,大小
+                开始增大,当增大了6次以后,
+                    文字大小开始缩小,缩小6次,
+                    文字再开始增大。
+            */
+        //随机颜色的函数
+        function randomColor(){
+            var str="rgba("+parseInt(Math.random()*256)+","+parseInt(Math.random()*256)+","+parseInt(Math.random()*256)+",1)";
+            return str;
+        }
+        //alert(randomColor());
+        //跨浏览器的兼容样式
+        function getStyle(node,CssStyle){
+           return node.currentStyle?node.currentStyle[CssStyle]:getComputedStyle(node)[CssStyle];
+        }
+        window.onload=function(){
+          var div1=document.getElementById("div1");
+          var speed=5;//每一次变化的大小
+          var count=0;//计数
+          setInterval(function(){
+               div1.style.color=randomColor(); 
+               //1、将字体上一次的字体大小取出 //2、变化字体大小，重复赋值回去
+               div1.style.fontSize=parseInt(getStyle(div1,'fontSize'))+speed+"px";
+                count++;
+                if(count%6==0){
+                    speed*=-1;
+                }  
+          },1000);
+        }
+    </script>
+</head>
+<body>
+    <div id="div1">文本变换</div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload=function(){
+            console.time("time1");
+            for(var i=0;i<100000;i++){
+                var newnodes=document.createElement("div");
+                document.body.appendChild(newnodes);
+            }
+            console.timeEnd("time1");
+     
+          /* 
+                    先创建好10W个节点，
+                    将10W节点查入到一个节点上
+                    ，最后将这1个节点添加到页面上
+                */
+           //test2：78 毫秒 - 倒计时结束   文档碎片
+           console.time("time2");
+           var node=document.createElement("div");
+           for(var j=0;j<100000;j++){
+               var node1=document.createElement("div");
+               node.appendChild(node1);
+            
+
+           }
+           document.body.appendChild(node);
+           console.timeEnd("time2");
+
+        }
+    </script>
+</head>
+<body>
+    <div id="div2"></div>
+</body>
+</html>

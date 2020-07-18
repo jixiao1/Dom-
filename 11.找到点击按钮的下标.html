@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //找到button 按钮的下标
+        window.onload=function(){
+            var btns=document.getElementsByTagName("button");
+            
+            for(var i=0;i<btns.length;i++){
+                //自定义属性
+                btns[i].index=i;
+                btns[i].onclick=function(){
+                      alert(this.index);
+                }
+                /*  btns[i].onclick=function(){
+                      alert(i);  //这个不行 ，循环提前结束了 无异于刻舟求剑
+                  }      */   
+            }
+        }
+    </script>
+</head>
+<body>
+    <button>按钮1</button>
+    
+    <button>按钮2</button>
+    
+    <button>按钮3</button>
+</body>
+</html>

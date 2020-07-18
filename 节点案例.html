@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        #div1{
+            width: 200px;
+            height: 100px;
+            background-color: orange;
+            margin: 0 auto;
+        }
+        #div2{
+            width: 200px;
+            height: 500px;
+            background-color: peachpuff;
+            margin: 0 auto;
+        }
+        #input1{
+            width:200px;
+            height: 30px;
+            background-color: #eeeeee;
+            border-radius: 3px;
+            padding: 5px;
+            box-sizing: border-box;
+            outline: none;
+            border: none;
+        }
+        #div1 button{
+            width: 50px;
+            height: 30px;
+            background-color: #000000;
+            color: #ffffff;
+            line-height: 30px;
+            text-align: center;
+            margin:10px 5px;
+            border: none;
+        }
+        #div2 div{
+            border-bottom: 1px solid #eeeeee;
+            position: relative;
+        }
+        #div2 div button{
+             position: absolute;
+             right: 0;
+             width: 10px;
+             height: 10px;
+             background-color: #333333;
+             color: #ffffff;
+             line-height: 10px;
+            text-align: center;
+            top: 5px;
+        }
+    </style>
+    <script src="js/tool.js"></script>
+    <script>
+        window.onload=function(){
+            var oDiv1=document.getElementById("div1");
+            var oDiv2=document.getElementById("div2");
+           var Input=document.getElementById("input1");
+           var btns=document.getElementsByTagName("button");
+           btns[0].onclick=function(){
+               //添加的功能
+               if(!Input.value){
+                   alert("输入的内容为空，请重新输入");
+               }else{
+                   //创建div节点
+                   var newNode=document.createElement("div");
+                   //创建文本节点
+                   var oText=document.createTextNode(Input.value);
+                    //将该节点添加到div2中
+                   oDiv2.appendChild(newNode);
+                   //将该文本添加到div2中的div的文本位置
+                   newNode.appendChild(oText);
+                   newNode.style.backgroundColor=randomColor();
+                   Input.value="";
+                   var btn=document.createElement("button");
+                   newNode.appendChild(btn);
+                   btn.onclick=function(){
+                       //删除这个节点的父节点
+                       oDiv2.removeChild(this.parentNode);
+                   }
+
+
+               }
+               //删除功能
+               btns[1].onclick=function(){
+                    //删除div2中的最后的一个节点
+                    oDiv2.removeChild(oDiv2.lastChild);
+               }
+               //拷贝
+               btns[2].onclick=function(){
+                   var newC=oDiv2.lastChild.cloneNode(true);
+                   oDiv2.appendChild(newC);
+
+               }
+           }         
+        }
+    </script>
+</head>
+<body>
+    <div id="div1">
+       <input type="text" id="input1" placeholder="请输入添加的内容">
+       <button>添加</button>
+       <button>删除</button>
+       <button>拷贝</button>
+    </div>
+    <div id="div2">
+     <!----- <div>xxx<button>x</button></div>
+       <div>xxx<button>x</button></div>
+       <div>xxx<button>x</button></div>--->
+    </div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #div1{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            border: 1px solid #000000;
+            padding: 8px;
+            margin: 20px;
+        }
+    </style>
+    <script>
+        /* 
+                offsetWidth
+                offsetHeight
+
+                offsetLeft
+                offsetTop
+             */
+        window.onload=function(){
+             var Odiv=document.getElementById("div1");
+             //alert(getStyle(Odiv,"width"));
+             alert(Odiv.offsetWidth);//width+border+padding 表示眼睛所看的宽度
+                   
+        }
+        //跨浏览器兼容问题
+        function getStyle(node,cssStyle){
+            return node.currentStyle?node.currentStyle(cssStyle):getComputedStyle(node)[cssStyle];
+        }
+    </script>
+</head>
+<body>
+    <div id="div1"></div>
+</body>
+</html>
